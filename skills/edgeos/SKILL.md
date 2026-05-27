@@ -50,7 +50,7 @@ You need two tokens, both passed as `Authorization: Bearer <token>`:
 - **`$EDGEOS_BEARER_TOKEN`** — human session JWT. Required for: `/humans/me`, `/applications/my/directory/{popup_id}`. Scopes: `portal:self_read`, `portal:directory_read`.
 - **`$EDGEOS_API_KEY`** — long-lived `eos_live_...` automation key. Required for events, RSVPs, venues.
 
-In every curl example below, `<EDGEOS_API_KEY>` is a placeholder for the value of `$EDGEOS_API_KEY` and `<EDGEOS_BEARER_TOKEN>` is a placeholder for the value of `$EDGEOS_BEARER_TOKEN`. Substitute the actual runtime values when constructing requests.
+In every curl example below, `<EDGEOS_API_KEY>` and `<EDGEOS_BEARER_TOKEN>` are placeholders — substitute the actual token values from your environment before running the command.
 
 ## 2. Conventions
 
@@ -68,7 +68,7 @@ All event-read recipes use `Authorization: Bearer <EDGEOS_API_KEY>`.
 curl -s -H "Authorization: Bearer <EDGEOS_API_KEY>" \
   "https://api.edgeos.world/api/v1/events/portal/events?start_after={current_iso_timestamp}&limit=50"
 ```
-Replace `{current_iso_timestamp}` with the current UTC time in ISO-8601 format (e.g. `2026-05-26T21:00:00Z`). Do not use shell command substitution (`$(date ...)`) — compute the value in code or use the agent's date tools.
+`{current_iso_timestamp}` must be a literal ISO-8601 UTC string (e.g. `2026-05-26T21:00:00Z`) — compute it in code or via the agent's date tools, not via shell substitution.
 
 **List events in a date range:**
 ```bash
